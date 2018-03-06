@@ -21,7 +21,6 @@ require "var.php";
     </head>
     <body>
         <?php
-
             if ($userLogin != $userVerif['username'] || password_verify($passwordLogin, $userVerif['password'])== false && isset($_POST['log'])){
                 require "login.php";
                 echo "<p>Les informations données ne sont pas valides</p>";
