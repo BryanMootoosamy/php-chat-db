@@ -33,11 +33,7 @@ require "var.php";
             elseif ($userLogin == null || $passwordLogin == null){
                 require "login.php";
             }
-
-
-
-
-            // require "login.php"; ?>
+            ?>
         <?php
             if ($userLogin == $userVerif['username'] && password_verify($passwordLogin, $userVerif['password'])== true && isset($_POST['log'])){
                 require "conversation.php";
