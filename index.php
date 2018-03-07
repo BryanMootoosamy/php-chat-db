@@ -1,16 +1,19 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-try {
-    $db = new PDO('mysql:host=localhost;dbname=thanatchat', 'root', 'ananas');
-} catch (Exception $e) {
-    echo "Erreur: $e".$e->getMessage();
-}
-require "function.php";
-require "var.php";
-
-
+    session_start();
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    try {
+        $db = new PDO('mysql:host=localhost;dbname=thanatchat', 'root', 'ananas');
+    } catch (Exception $e) {
+        echo "Erreur: $e".$e->getMessage();
+    }
+    require "function.php";
+    require "var.php";
+    if (isset($_POST['logout'])) {
+        session_unset();
+        session_destroy();
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +24,10 @@ require "var.php";
     </head>
     <body>
         <?php
-            if ($userLogin != $userVerif['username'] || password_verify($passwordLogin, $userVerif['password'])== false && isset($_POST['log'])){
+            if (isset($_SESSION['user'])){
+                require "conversation.php";
+            }
+            elseif ($userLogin != $userVerif['username'] || password_verify($passwordLogin, $userVerif['password'])== false && isset($_POST['log'])){
                 require "login.php";
                 echo "<p>Les informations données ne sont pas valides</p>";
             }
@@ -31,11 +37,6 @@ require "var.php";
             }
             elseif ($userLogin == null || $passwordLogin == null){
                 require "login.php";
-            }
-            ?>
-        <?php
-            if ($userLogin == $userVerif['username'] && password_verify($passwordLogin, $userVerif['password'])== true && isset($_POST['log'])){
-                require "conversation.php";
             }
         ?>
     </body>
