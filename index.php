@@ -8,8 +8,8 @@
     } catch (Exception $e) {
         echo "Erreur: $e".$e->getMessage();
     }
-    require "function.php";
-    require "var.php";
+    require "ressources/function.php";
+    require "ressources/var.php";
     if (isset($_POST['logout'])) {
         session_unset();
         session_destroy();
@@ -25,18 +25,18 @@
     <body>
         <?php
             if (isset($_SESSION['user'])){
-                require "conversation.php";
+                require "ressources/conversation.php";
             }
             elseif ($userLogin != $userVerif['username'] || password_verify($passwordLogin, $userVerif['password'])== false && isset($_POST['log'])){
-                require "login.php";
+                require "ressources/login.php";
                 echo "<p>Les informations données ne sont pas valides</p>";
             }
             elseif ((!isset($userLogin) || !isset($passwordLogin) || !isset($_POST['passwordConfirm']) || !isset($mail)) && isset($_POST['sign'])){
-                require "login.php";
+                require "ressources/login.php";
                 echo "<p>Erreur: Mauvaises informations communiquées lors de l'inscription</p>";
             }
             elseif ($userLogin == null || $passwordLogin == null){
-                require "login.php";
+                require "ressources/login.php";
             }
         ?>
     </body>
