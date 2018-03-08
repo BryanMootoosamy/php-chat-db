@@ -1,4 +1,11 @@
 .login {
   display: flex; }
 
+.window {
+  display: flex; }
+  .window .users .online {
+    color: lightgreen; }
+  .window .users .offline {
+    color: grey; }
+
 /*# sourceMappingURL=style.css.map */

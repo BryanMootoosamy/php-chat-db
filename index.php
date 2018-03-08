@@ -11,6 +11,7 @@
     require "ressources/function.php";
     require "ressources/var.php";
     if (isset($_POST['logout'])) {
+        $db->exec("update users set user_state = 1 where username = '".$_SESSION['user']."'");
         session_unset();
         session_destroy();
     }
@@ -27,15 +28,18 @@
             if (isset($_SESSION['user'])){
                 require "ressources/conversation.php";
             }
-            elseif ($userLogin != $userVerif['username'] || password_verify($passwordLogin, $userVerif['password'])== false && isset($_POST['log'])){
+            elseif (($userLogin != $userVerif['username'] || password_verify($passwordLogin, $userVerif['password'])== false) && isset($_POST['log'])){
                 require "ressources/login.php";
                 echo "<p>Les informations données ne sont pas valides</p>";
             }
-            elseif ((!isset($userLogin) || !isset($passwordLogin) || !isset($_POST['passwordConfirm']) || !isset($mail)) && isset($_POST['sign'])){
+            elseif ((empty($userLogin) || empty($passwordLogin) || empty($_POST['passwordConfirm']) || empty($mail)) && isset($_POST['sign'])){
                 require "ressources/login.php";
                 echo "<p>Erreur: Mauvaises informations communiquées lors de l'inscription</p>";
             }
             elseif ($userLogin == null || $passwordLogin == null){
+                require "ressources/login.php";
+            }
+            else {
                 require "ressources/login.php";
             }
         ?>

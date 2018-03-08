@@ -2,7 +2,7 @@
     <section class="signIn">
         <form class="in" action="index.php" method="post">
             <h2>Connectez-vous !</h2>
-            <p>Nom d'utilisateur:</p><input type="text" name="username" value="">
+            <p>Adresse mail:</p><input type="email" name="email" value="">
             <p>Mot de passe:</p><input type="password" name="password" value="">
             <button type="send" name="log">Se connecter</button>
         </form>
@@ -13,7 +13,7 @@
             <p>Nom d'utilisateur:</p><input type="text" name="usernameSet" value="">
             <p>Mot de passe:</p><input type="password" name="passwordSet" value="">
             <p>Confirmez votre mot de passe:</p><input type="password" name="passwordConfirm" value="">
-            <p>E-mail:</p><input type="text" name="mail" value="">
+            <p>E-mail:</p><input type="email" name="mail" value="">
             <button type="send" name="sign">S'enregistrer</button>
         </form>
     </section>
