@@ -26,7 +26,8 @@
         $passwordLogin = filter_var($passwordRaw, FILTER_SANITIZE_STRING);
         $passwordHide = password_hash($passwordLogin, PASSWORD_DEFAULT);
         $email = attribution($_POST['mail']);
-        $mail = filter_var($email, FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
+        $mail = filter_var($email, FILTER_SANITIZE_EMAIL);
+        $mail = filter_var($mail, FILTER_VALIDATE_EMAIL);
         $existenceUser = $db->query("select username from users where username = '".$userLogin."'");
         $existenceMail = $db->query("select email from users where email = '".$mail."'");
         $existUser = $existenceUser -> fetch();
