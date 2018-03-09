@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Indie+Flower);
 body {
   height: 100vh;
-  overflow: hidden;
   margin: 0; }
 
 .error {
@@ -42,20 +41,43 @@ body {
       margin-top: 30vh;
       font-size: 18px; }
 
-.window {
-  display: flex; }
-  .window .users .online {
-    color: lightgreen; }
-  .window .users .offline {
-    color: grey; }
-
 .page {
   height: 100vh;
   background-image: url("pics/convo.jpg");
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
-  margin: auto; }
-  .page .window .convo {
+  overflow: hidden; }
+  .page .window {
     display: flex; }
+    .page .window .users {
+      transform: translate(3vw, 7vh);
+      border: 3px solid grey;
+      height: 50vh;
+      width: 10vw;
+      overflow-y: scroll; }
+      .page .window .users .online {
+        color: green; }
+      .page .window .users .offline {
+        color: grey; }
+    .page .window .convo {
+      display: flex;
+      margin: 15vh auto; }
+      .page .window .convo .message {
+        display: block;
+        text-align: center; }
+        .page .window .convo .message h2 {
+          font-family: "Indie Flower"; }
+        .page .window .convo .message iframe {
+          height: 50vh;
+          width: 60vw; }
+      .page .window .convo .user {
+        text-align: left; }
+
+.line {
+  padding: 2vh 2vw;
+  font-family: "Indie Flower"; }
+
+.messageLine {
+  padding: 2vh 2vw; }
 
 /*# sourceMappingURL=style.css.map */

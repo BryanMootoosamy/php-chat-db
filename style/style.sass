@@ -2,7 +2,6 @@
 
 body
     height: 100vh
-    overflow: hidden
     margin: 0
 .error
     color: red
@@ -39,20 +38,39 @@ body
         .signUp
             margin-top: 30vh
             font-size: 18px
-.window
-    display: flex
-    .users
-        .online
-            color: lightgreen
-        .offline
-            color: grey
 .page
     height: 100vh
     background-image: url("pics/convo.jpg")
     background-repeat: no-repeat
     background-size: 100vw 100vh
-    margin: auto
+    overflow: hidden
     .window
+        display: flex
+        .users
+            transform: translate(3vw, 7vh)
+            border: 3px solid grey
+            height: 50vh
+            width: 10vw
+            overflow-y: scroll
+            .online
+                color: green
+            .offline
+                color: grey
         .convo
             display: flex
+            margin: 15vh auto
             .message
+                display: block
+                text-align: center
+                h2
+                    font-family: "Indie Flower"
+                iframe
+                    height: 50vh
+                    width: 60vw
+            .user
+                text-align: left
+.line
+    padding: 2vh 2vw
+    font-family: "Indie Flower"
+.messageLine
+    padding: 2vh 2vw
