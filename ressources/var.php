@@ -17,9 +17,9 @@
         if ($userLogin == $verifUser && password_verify($passwordLogin, $verifPassword) == true){
             $_SESSION['user'] = $userVerif['username'];
             $db->exec("update users set user_state = 2 where username = '".$_SESSION['user']."'");
-        }
+        } else {$falseCo = true;}
     }
-    elseif (isset($_POST['usernameSet']) && isset($_POST['passwordSet']) && isset($_POST['passwordConfirm']) && isset($_POST['mail']) && $_POST['passwordSet'] == $_POST['passwordConfirm'] && isset($_POST['sign'])){
+    elseif (isset($_POST['usernameSet']) && isset($_POST['passwordSet']) && isset($_POST['passwordConfirm']) && isset($_POST['mail']) && isset($_POST['sign'])){
         $username = attribution($_POST['usernameSet']);
         $userLogin = filter_var($username, FILTER_SANITIZE_STRING);
         $passwordRaw = attribution($_POST['passwordSet']);
@@ -27,6 +27,12 @@
         $passwordHide = password_hash($passwordLogin, PASSWORD_DEFAULT);
         $email = attribution($_POST['mail']);
         $mail = filter_var($email, FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
-        $db->exec("insert into users (username, email, password) values ('$userLogin', '$mail', '$passwordHide')");
+        $existenceUser = $db->query("select username from users where username = '".$userLogin."'");
+        $existenceMail = $db->query("select email from users where email = '".$mail."'");
+        $existUser = $existenceUser -> fetch();
+        $existMail = $existenceMail -> fetch();
+        if ( $_POST['passwordSet'] == $_POST['passwordConfirm'] && $_POST['usernameSet'] != $existUser['username'] && $_POST['mail'] != $existMail) {
+            $db->exec("insert into users (username, email, password) values ('$userLogin', '$mail', '$passwordHide')");
+        } else {$error = true;}
     }
 ?>

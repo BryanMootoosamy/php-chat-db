@@ -11,9 +11,10 @@
     require "ressources/function.php";
     require "ressources/var.php";
     if (isset($_POST['logout'])) {
+        $logout = true;
         $db->exec("update users set user_state = 1 where username = '".$_SESSION['user']."'");
         session_unset();
-        session_destroy();
+        session_destroy();    
     }
 ?>
 <!DOCTYPE html>
