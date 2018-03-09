@@ -49,4 +49,13 @@ body {
   .window .users .offline {
     color: grey; }
 
+.page {
+  height: 100vh;
+  background-image: url("pics/convo.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  margin: auto; }
+  .page .window .convo {
+    display: flex; }
+
 /*# sourceMappingURL=style.css.map */
